@@ -6,18 +6,12 @@ export async function createPost(post: InsertPost) {
   return db.insert(postsTable).values(post);
 }
 
-export async function getPostFromId(id: number) {
-  return db
-    .select({ id: postsTable.id })
-    .from(postsTable)
-    .where(eq(postsTable.id, id));
+export async function getPostById(id: number) {
+  return db.select().from(postsTable).where(eq(postsTable.id, id));
 }
 
-export async function getPostFromSlug(slug: string) {
-  return db
-    .select({ slug: postsTable.slug })
-    .from(postsTable)
-    .where(eq(postsTable.slug, slug));
+export async function getPostBySlug(slug: string) {
+  return db.select().from(postsTable).where(eq(postsTable.slug, slug));
 }
 
 export async function deletePost(id: number) {

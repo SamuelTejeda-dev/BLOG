@@ -3,6 +3,7 @@ import cors from "cors";
 import { APP_ORIGIN, NODE_ENV, PORT } from "./constants/env";
 import errorHandler from "./middleware/errorHandler";
 import adminRoutes from "./routes/admin.route";
+import postsRoutes from "./routes/posts.route";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/admin", adminRoutes);
+app.use("/post", postsRoutes);
 
 app.use(errorHandler);
 

@@ -1,11 +1,14 @@
 import { OK } from "../constants/http";
+import { postSchema } from "../models/post.schema";
 import catchErrors from "../utils/catchErrors";
+import { createPost } from "../utils/posts";
 
 export const postHandler = catchErrors(async (req, res) => {
-  const request = req.body;
-  console.log(request);
+  const result = postSchema.parse(req.body);
 
-  res.status(OK).send(request);
+  createPost(result);
+
+  res.status(OK).send(result);
 });
 
 export const getPostHandler = catchErrors(async (req, res) => {});

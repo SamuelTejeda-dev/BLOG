@@ -7,8 +7,9 @@ export const adminCheck = (
   res: Response,
   next: NextFunction
 ): void => {
-  const admin = req.params.admin;
+  const providedPassword = req.headers["authorization"]?.replace("Bearer ", "");
+  console.log(providedPassword);
 
-  appAssert(admin === ADMIN, 401, "Non autorizzato");
+  appAssert(providedPassword === ADMIN, 401, "Non autorizzato");
   next();
 };

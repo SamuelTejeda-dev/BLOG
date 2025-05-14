@@ -4,6 +4,6 @@ import { adminCheck } from "../middleware/adminCheck";
 
 const adminRoutes = Router();
 
-adminRoutes.post("/:admin", adminCheck, postHandler);
+adminRoutes.post("/", adminCheck, postHandler);
 
 export default adminRoutes;
