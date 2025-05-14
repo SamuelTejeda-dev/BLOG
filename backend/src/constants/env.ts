@@ -14,3 +14,4 @@ export const NODE_ENV = getEnv("NODE_ENV", "development");
 export const PORT = getEnv("PORT", "4004");
 export const APP_ORIGIN = getEnv("APP_ORIGIN");
 export const ADMIN = getEnv("ADMIN");
+export const NEON_URI = getEnv("NEON_URI");
