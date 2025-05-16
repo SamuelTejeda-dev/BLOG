@@ -4,6 +4,7 @@ import AppError from "../utils/appError";
 import { z } from "zod";
 import { NeonDbError } from "@neondatabase/serverless";
 import { json } from "drizzle-orm/gel-core";
+import { NODE_ENV } from "../constants/env";
 
 const handleNeonError = (res: Response, error: NeonDbError) => {
   return res.status(BAD_REQUEST).json({
@@ -41,6 +42,11 @@ const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
   if (error instanceof AppError) {
     handleAppError(res, error);
   }
+
+  res.status(INTERNAL_SERVER_ERROR).json({
+    message: "Errore interno del server",
+    error: NODE_ENV === "development" ? error : undefined,
+  });
 };
 
 export default errorHandler;

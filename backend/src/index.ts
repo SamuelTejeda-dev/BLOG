@@ -4,6 +4,7 @@ import { APP_ORIGIN, NODE_ENV, PORT } from "./constants/env";
 import errorHandler from "./middleware/errorHandler";
 import adminRoutes from "./routes/admin.route";
 import postsRoutes from "./routes/posts.route";
+import helmet from "helmet";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(
     origin: APP_ORIGIN,
   })
 );
+app.use(helmet());
 
 app.get("/", (req, res) => {
   res.send("ciao");
