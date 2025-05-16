@@ -6,7 +6,7 @@ import { createPost } from "../utils/posts";
 export const postHandler = catchErrors(async (req, res) => {
   const result = postSchema.parse(req.body);
 
-  createPost(result);
+  await createPost(result);
 
   res.status(OK).send(result);
 });

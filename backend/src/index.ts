@@ -24,6 +24,6 @@ app.use("/post", postsRoutes);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT} in ${NODE_ENV} enviroment`);
 });

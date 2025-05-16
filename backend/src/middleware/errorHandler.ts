@@ -2,6 +2,15 @@ import { ErrorRequestHandler, Response } from "express";
 import { BAD_REQUEST, INTERNAL_SERVER_ERROR } from "../constants/http";
 import AppError from "../utils/appError";
 import { z } from "zod";
+import { NeonDbError } from "@neondatabase/serverless";
+import { json } from "drizzle-orm/gel-core";
+
+const handleNeonError = (res: Response, error: NeonDbError) => {
+  return res.status(BAD_REQUEST).json({
+    message: error.message,
+    errorCode: error.code,
+  });
+};
 
 const handleAppError = (res: Response, error: AppError) => {
   return res.status(error.statusCode).json({
@@ -19,7 +28,11 @@ const handleZodError = (res: Response, error: z.ZodError) => {
 };
 
 const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
-  console.log(`PATH: ${req.path}`, error);
+  console.log(`ERROR - PATH: ${req.path}`, error);
+
+  if (error instanceof NeonDbError) {
+    handleNeonError(res, error);
+  }
 
   if (error instanceof z.ZodError) {
     handleZodError(res, error);
@@ -28,8 +41,6 @@ const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
   if (error instanceof AppError) {
     handleAppError(res, error);
   }
-
-  res.status(INTERNAL_SERVER_ERROR).send("Internal server errror");
 };
 
 export default errorHandler;
