@@ -2,8 +2,14 @@ import { eq } from "drizzle-orm";
 import { db } from "../config/db";
 import { InsertPost, postsTable } from "../models/PostModel";
 
+//funzioni crud per i post
+
 export async function createPost(post: InsertPost) {
   return db.insert(postsTable).values(post);
+}
+
+export async function getXPosts(numberOfPost: number) {
+  return db.select().from(postsTable).limit(numberOfPost);
 }
 
 export async function getPostById(id: number) {

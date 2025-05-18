@@ -1,8 +1,15 @@
 import { Router } from "express";
-import { getPostBySlugHandler } from "../controllers/posts.controller";
+import {
+  getPostBySlugHandler,
+  getXPostsBySlugHandler,
+} from "../controllers/posts.controller";
+import { blogViewLimiter } from "../middleware/rateLimiter";
+
+//post routes
 
 const postsRoutes = Router();
 
-postsRoutes.get("/:slug", getPostBySlugHandler);
+postsRoutes.get("/", blogViewLimiter, getXPostsBySlugHandler);
+postsRoutes.get("/:slug", blogViewLimiter, getPostBySlugHandler);
 
 export default postsRoutes;

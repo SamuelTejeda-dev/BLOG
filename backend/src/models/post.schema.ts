@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+//validazione delle richieste
+
 export const contentSchema = z.object({
   title: z.string(),
   description: z.string(),

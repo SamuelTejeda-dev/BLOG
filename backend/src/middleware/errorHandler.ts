@@ -3,8 +3,9 @@ import { BAD_REQUEST, INTERNAL_SERVER_ERROR } from "../constants/http";
 import AppError from "../utils/appError";
 import { z } from "zod";
 import { NeonDbError } from "@neondatabase/serverless";
-import { json } from "drizzle-orm/gel-core";
 import { NODE_ENV } from "../constants/env";
+
+//middleware che ritorna degli errori
 
 const handleNeonError = (res: Response, error: NeonDbError) => {
   return res.status(BAD_REQUEST).json({

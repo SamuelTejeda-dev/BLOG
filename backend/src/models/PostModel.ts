@@ -7,7 +7,8 @@ import {
   uniqueIndex,
 } from "drizzle-orm/pg-core";
 
-//Tabella posts
+//Tabella posts nel DB
+
 export const postsTable = pgTable(
   "posts_table",
   {

@@ -1,9 +1,21 @@
 import { Router } from "express";
-import { postHandler } from "../controllers/admin.controller";
-import { adminCheck } from "../middleware/adminCheck";
+import {
+  loginHandler,
+  logoutHandler,
+  postHandler,
+} from "../controllers/admin.controller";
+import { isAdmin } from "../middleware/isAdmin";
+import {
+  loginRquestLimiter,
+  postCreationLimiter,
+} from "../middleware/rateLimiter";
+
+//admin routes
 
 const adminRoutes = Router();
 
-adminRoutes.post("/", adminCheck, postHandler);
+adminRoutes.post("/contacts", loginRquestLimiter, loginHandler);
+adminRoutes.post("/clear", isAdmin, logoutHandler);
+adminRoutes.post("/resources", postCreationLimiter, isAdmin, postHandler);
 
 export default adminRoutes;
