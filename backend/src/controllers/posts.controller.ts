@@ -9,7 +9,7 @@ export const getPostBySlugHandler = catchErrors(async (req, res) => {
   const slug = req.params.slug;
 
   const post = await getPostBySlug(slug);
-  appAssert(post.length !== 0, NOT_FOUND, "Post non esistente");
+  appAssert(post, NOT_FOUND, "Post non esistente");
 
   res.status(OK).json(post);
 });

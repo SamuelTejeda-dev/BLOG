@@ -11,5 +11,5 @@ export const isAdmin = (
   if (req.session && req.session.isAdmin) {
     return next();
   }
-  res.status(UNAUTHORIZED).json({ message: "Non sei autorizzato" });
+  res.status(UNAUTHORIZED).json({ message: "You are not authorized" });
 };

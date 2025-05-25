@@ -30,7 +30,7 @@ export const blogViewLimiter = rateLimit({
 
 export const postCreationLimiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 minuti
-  max: 3, // max 5 articoli ogni 10 minuti per IP
+  max: 5, // max 5 articoli ogni 10 minuti per IP
   standardHeaders: true,
   legacyHeaders: false,
   handler: (_, res) => {

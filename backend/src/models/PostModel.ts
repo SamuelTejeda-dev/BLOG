@@ -14,7 +14,6 @@ export const postsTable = pgTable(
   {
     id: serial("id").primaryKey(),
     slug: text("slug").notNull().unique(),
-    title: text("title").notNull().unique(),
     content: json("content").notNull(),
     author: text("author").notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),

@@ -4,11 +4,14 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #ffffffde;
-  background-color: #242424;
+  color: var(--bg-color-light);
+  background-color: var(--bg-color-light);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --bg-color-light: #ffffffde;
+  --bg-color-dark: #242424;
 }

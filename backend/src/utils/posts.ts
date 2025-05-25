@@ -13,11 +13,19 @@ export async function getXPosts(numberOfPost: number) {
 }
 
 export async function getPostById(id: number) {
-  return db.select().from(postsTable).where(eq(postsTable.id, id));
+  const result = await db
+    .select()
+    .from(postsTable)
+    .where(eq(postsTable.id, id));
+  return result[0];
 }
 
 export async function getPostBySlug(slug: string) {
-  return db.select().from(postsTable).where(eq(postsTable.slug, slug));
+  const result = await db
+    .select()
+    .from(postsTable)
+    .where(eq(postsTable.slug, slug));
+  return result[0];
 }
 
 export async function deletePost(id: number) {

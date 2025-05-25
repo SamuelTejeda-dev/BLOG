@@ -32,8 +32,8 @@ app.use(
 
 app.use(helmet());
 
-app.get("/", (req, res) => {
-  res.send("ciao");
+app.get("/", (_, res) => {
+  res.json({ message: "hello" });
 });
 
 app.use("/manage", adminRoutes);
@@ -44,3 +44,8 @@ app.use(errorHandler);
 app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT} in ${NODE_ENV} enviroment`);
 });
+
+export default app;
+// export const closeServer = () => {
+//   server.close();
+// };
