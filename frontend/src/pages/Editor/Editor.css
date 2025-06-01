@@ -1,0 +1,17 @@
+.container {
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+#editorjs-container {
+  border: 3px white solid;
+  max-width: 1600px;
+  color: #000;
+  min-height: 500px;
+}
+
+.container-options {
+  margin-top: 10px;
+  align-self: flex-end;
+}

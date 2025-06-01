@@ -3,9 +3,11 @@ nav {
   color: rgb(0, 0, 0);
   display: flex;
   position: sticky;
+  top: 0;
   justify-content: space-between;
   align-items: center;
   padding: 1.1rem;
+  z-index: 1;
 }
 
 .navbar-logo {

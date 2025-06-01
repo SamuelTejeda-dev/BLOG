@@ -1,0 +1,63 @@
+/* Material Design Form */
+
+.material-form-container {
+  display: flex;
+  align-items: center; /* centra verticalmente */
+  justify-content: center; /* centra orizzontalmente */
+  min-height: 100vh;
+}
+
+.material-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.material-form .input-field {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.material-form input {
+  width: 100%;
+  padding: 0.8rem 0;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  outline: none;
+  transition: 0.2s;
+  background: transparent;
+}
+
+.material-form .bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.material-form .bar:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  position: absolute;
+  /* background: #2196f3; */
+  background: black;
+  transition: 0.2s;
+  left: 50%;
+}
+
+.material-form input:focus ~ .bar:before {
+  width: 100%;
+  left: 0;
+}
+
+.material-form input:focus ~ label,
+.material-form input:valid ~ label {
+  top: -1.2rem;
+  font-size: 0.8rem;
+  color: black;
+}

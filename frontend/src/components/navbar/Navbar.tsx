@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="navbar-logo">
-        <Image src="" alt="logo" />
+        <Image className="logo" src="logo.jpg" alt="logo" />
       </div>
       <div className="navbar-search-bar">
         <input
@@ -18,7 +18,6 @@ const Navbar = () => {
         <IoSearchSharp fontSize={"1.3rem"} />
       </div>
       <div className="navbar-links-section">
-        <Image src="" alt="" />
         <Link className="navbar-links" to="/">
           HOME
         </Link>

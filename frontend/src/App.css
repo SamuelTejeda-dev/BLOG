@@ -1,7 +1,113 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+.banner-container {
+  position: relative;
+}
 
-  padding: 0;
+.banner-text {
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  /* animation-duration: 1.5s;
+  animation-name: fade; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  width: 720px;
+}
+
+.banner-text-main {
+  font-size: 3.5rem; /* Dimensioni maggiori per il titolo */
+  margin-bottom: 10px;
+}
+
+.banner-text-sub {
+  font-size: 1.2rem; /* Dimensioni minori per il sottotitolo */
+  margin-top: 10px;
+}
+
+.block-containers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.block-container {
+  min-width: 300px;
+
+  border: 2px gray solid;
+  border-radius: 1rem;
+  padding: 2rem;
+  background-color: rgb(206, 206, 206);
+}
+
+.block-container > h4 {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: #000;
+}
+
+.block-container > h3 {
+  color: #000;
+}
+
+.linea {
+  border-top: 2px solid rgb(0, 0, 0); /* Oppure border-bottom */
+  width: 100%; /* Per la linea orizzontale che copre l'intera larghezza */
+  padding: 5px;
+}
+
+.text-container {
+  display: flex;
+  justify-self: center;
+  color: black;
+  font-size: 2.5rem;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+
+/* CSS */
+.main-button {
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.main-button:hover,
+.main-button:focus {
+  background-color: #333333;
+}
+
+.title {
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
 }

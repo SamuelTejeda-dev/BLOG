@@ -10,6 +10,8 @@ type post = {
 //export const getPosts = () => api.get("/posts");
 export const getPostBySlug = async (slug: string) =>
   await api.get(`/posts/${slug}`);
-export const createPost = async (data: post) => await api.post("/admin", data);
-//Da implementare
-//export const deletePost = (id: string) => api.delete(`/posts/${id}`);
+export const createPost = async (data: post) =>
+  await api.post(`manage/resources`, data);
+export const login = async (data: any) => {
+  await api.post(`/manage/contacts`, data);
+};

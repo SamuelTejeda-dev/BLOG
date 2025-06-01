@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: var(--bg-color-light);
+  color: var(--bg-color-dark);
   background-color: var(--bg-color-light);
 
   font-synthesis: none;
@@ -14,4 +14,14 @@
 
   --bg-color-light: #ffffffde;
   --bg-color-dark: #242424;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Cochin, Georgia, Times, "Times New Roman", serif;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  color: #000;
+  /* outline: 2px red solid; */
 }

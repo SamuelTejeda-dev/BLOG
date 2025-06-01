@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Navbar from "./components/navbar/Navbar";
-import EditorJS from "./pages/Editor";
+import WithLayout from "./components/Layout/WithLayout";
+import EditorJS from "./pages/Editor/Editor";
 import { useState } from "react";
+import WithoutLayout from "./components/Layout/WithoutLayout";
+import Login from "./pages/Login/Login";
 
 type editorData = {
   time: number;
@@ -21,7 +23,7 @@ const INITIAL_DATA = {
     {
       type: "header",
       data: {
-        text: "This is a tutorial of Editor js",
+        text: "Type here...",
         level: 1,
       },
     },
@@ -33,20 +35,24 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route
-          path="manage/resources"
-          element={
-            <EditorJS
-              data={data}
-              onChange={setData}
-              editorBlock="editorjs-container"
-            />
-          }
-        ></Route>
-        <Route path="/contact" element={<Home />}></Route>
+        <Route element={<WithLayout />}>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/contact" element={<Home />}></Route>
+        </Route>
+        <Route element={<WithoutLayout />}>
+          <Route path="manage/contacts" element={<Login />}></Route>
+          <Route
+            path="manage/resources"
+            element={
+              <EditorJS
+                data={data}
+                onChange={setData}
+                editorBlock="editorjs-container"
+              />
+            }
+          ></Route>
+        </Route>
       </Routes>
     </Router>
   );
