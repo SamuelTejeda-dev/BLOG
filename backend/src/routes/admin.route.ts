@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  checkSession,
   loginHandler,
   logoutHandler,
   postHandler,
@@ -17,5 +18,6 @@ const adminRoutes = Router();
 adminRoutes.post("/contacts", loginRquestLimiter, loginHandler);
 adminRoutes.post("/clear", isAdmin, logoutHandler);
 adminRoutes.post("/resources", postCreationLimiter, isAdmin, postHandler);
+adminRoutes.get("/check", checkSession);
 
 export default adminRoutes;

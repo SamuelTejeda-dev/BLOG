@@ -5,6 +5,7 @@ import EditorJS from "./pages/Editor/Editor";
 import { useState } from "react";
 import WithoutLayout from "./components/Layout/WithoutLayout";
 import Login from "./pages/Login/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 type editorData = {
   time: number;
@@ -37,24 +38,28 @@ function App() {
     <Router>
       <Routes>
         <Route element={<WithLayout />}>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/contact" element={<Home />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Home />} />
         </Route>
-        <Route element={<WithoutLayout />}>
-          <Route path="manage/contacts" element={<Login />}></Route>
-          <Route
-            path="manage/resources"
-            element={
-              <EditorJS
-                data={data}
-                onChange={(newData: any) => {
-                  console.log("Editor changed:", newData);
-                  setData(newData); // ✅ OK: chiaro che stai ricevendo solo `data`, non un evento
-                }}
-                editorBlock="editorjs-container"
-              />
-            }
-          ></Route>
+
+        <Route path="manage/contacts" element={<Login />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route element={<WithoutLayout />}>
+            <Route
+              path="manage/resources"
+              element={
+                <EditorJS
+                  data={data}
+                  onChange={(newData: any) => {
+                    console.log("Editor changed:", newData);
+                    setData(newData); // ✅ OK: chiaro che stai ricevendo solo `data`, non un evento
+                  }}
+                  editorBlock="editorjs-container"
+                />
+              }
+            />
+          </Route>
         </Route>
       </Routes>
     </Router>

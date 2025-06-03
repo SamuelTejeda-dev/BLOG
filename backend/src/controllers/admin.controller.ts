@@ -1,3 +1,4 @@
+import { log } from "node:console";
 import { NODE_ENV, SESSION_SECRET } from "../constants/env";
 import { CREATED, OK, UNAUTHORIZED } from "../constants/http";
 import { postSchema } from "../models/post.schema";
@@ -37,6 +38,14 @@ export const postHandler = catchErrors(async (req, res) => {
   await createPost(request);
 
   res.status(CREATED).json(request);
+});
+
+export const checkSession = catchErrors(async (req, res) => {
+  const session = req.session.isAdmin;
+
+  appAssert(session, UNAUTHORIZED, "You are not authorized");
+
+  res.status(OK).json(session);
 });
 
 export const getPostHandler = catchErrors(async (req, res) => {});
