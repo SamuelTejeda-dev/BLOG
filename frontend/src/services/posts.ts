@@ -2,7 +2,6 @@ import api from "../lib/axios";
 
 type post = {
   slug: string;
-  title: string;
   content: Object;
   author: string;
 };

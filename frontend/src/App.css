@@ -110,4 +110,9 @@
   font-weight: bold;
   text-align: center;
   margin: 20px;
+  font-size: 3rem;
+}
+
+.error {
+  color: red;
 }

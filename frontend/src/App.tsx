@@ -47,7 +47,10 @@ function App() {
             element={
               <EditorJS
                 data={data}
-                onChange={setData}
+                onChange={(newData: any) => {
+                  console.log("Editor changed:", newData);
+                  setData(newData); // ✅ OK: chiaro che stai ricevendo solo `data`, non un evento
+                }}
                 editorBlock="editorjs-container"
               />
             }

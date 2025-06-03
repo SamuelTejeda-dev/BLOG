@@ -14,7 +14,11 @@ const Login = () => {
     signIn({ password });
   };
 
-  const { mutate: signIn, isError } = useMutation({
+  const {
+    mutate: signIn,
+    isError,
+    isPending,
+  } = useMutation({
     mutationFn: login,
     onSuccess: () => {
       navigate("/manage/resources");
@@ -27,7 +31,7 @@ const Login = () => {
   return (
     <div className="material-form-container">
       <form className="material-form" onSubmit={handleSubmit}>
-        <h2 className="title">Login</h2>
+        <h2>Login</h2>
         <div className="input-field">
           <span className="bar"></span>
         </div>
@@ -42,9 +46,10 @@ const Login = () => {
           />
 
           <span className="bar"></span>
-          {isError && <p style={{ color: "red", marginTop: "1rem" }}>errore</p>}
+          {isError && <p className="error">You are not authorized!</p>}
         </div>
         <button
+          disabled={isPending}
           className="main-button"
           type="submit"
           onClick={() => signIn({ password })}

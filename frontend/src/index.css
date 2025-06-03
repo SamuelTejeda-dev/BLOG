@@ -12,7 +12,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg-color-light: #ffffffde;
+  --bg-color-light: #ffffffef;
+  --bg-color-input-light: #f2f2f2ef;
   --bg-color-dark: #242424;
 }
 
