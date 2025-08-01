@@ -6,6 +6,7 @@ import { useState } from "react";
 import WithoutLayout from "./components/Layout/WithoutLayout";
 import Login from "./pages/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Gradient from "./components/gradient/Gradient";
 
 type editorData = {
   time: number;
@@ -40,6 +41,7 @@ function App() {
         <Route element={<WithLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Home />} />
+          <Route path="/prova" element={<Gradient />}></Route>
         </Route>
 
         <Route path="manage/contacts" element={<Login />} />

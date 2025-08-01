@@ -49,7 +49,6 @@ const Editor = ({ data, onChange, editorBlock }: any) => {
       if (axios.isAxiosError(error)) {
         const message = error.response?.data?.message || "Errore generico";
         console.error("Errore:", message);
-        // Mostralo in UI o via toast/snackbar
         alert(message);
       }
     },
