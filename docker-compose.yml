@@ -1,0 +1,67 @@
+name: blog-app
+
+services:
+  postgres:
+    image: postgres:16.1-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: blog_db
+    networks:
+      - blog-app
+    restart: always
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./backend/.env
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - blog-app
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - blog-app
+    command: npm run dev -- --host
+    depends_on:
+      - api
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - blog-app
+    depends_on:
+      - api
+      - frontend
+
+volumes:
+  postgres_data:
+  caddy_data:
+  caddy_config:
+networks:
+  blog-app:
+    driver: bridge
