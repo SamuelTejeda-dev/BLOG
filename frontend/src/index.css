@@ -1,28 +1,11 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
+@plugin "daisyui";
 
-  color-scheme: light dark;
-  color: var(--bg-color-dark);
-  background-color: var(--bg-color-light);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --bg-color-light: #ffffffef;
-  --bg-color-input-light: #f2f2f2ef;
-  --bg-color-dark: #242424;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  font-family: Cochin, Georgia, Times, "Times New Roman", serif;
-  scroll-behavior: smooth;
-  box-sizing: border-box;
-  color: #000;
-  /* outline: 2px red solid; */
+@theme {
+  --color-lightPurple: #dcb3e1;
+  --color-darkPurple: #bf8cff;
+  --color-lightText: #ffffff;
+  --color-darkText: #000000;
+  --color-lightBackground: #ffffff;
+  --color-darkBackground: #181818;
 }

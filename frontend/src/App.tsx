@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import WithLayout from "./components/Layout/WithLayout";
 import EditorJS from "./pages/Editor/Editor";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WithoutLayout from "./components/Layout/WithoutLayout";
 import Login from "./pages/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -33,6 +33,16 @@ const INITIAL_DATA = {
 
 function App() {
   const [data, setData] = useState<editorData>(INITIAL_DATA);
+  const [theme, setTheme] = useState<string>("light");
+
+  useEffect(() => {
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    setTheme(systemPrefersDark ? "dark" : "light");
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return (
     <Router>
