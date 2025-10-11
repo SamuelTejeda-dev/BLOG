@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
-
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { useState } from "react";
 import { TbHomeFilled } from "react-icons/tb";
 import { MdContacts } from "react-icons/md";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { useThemeStore } from "../../stores/useThemeStore";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const theme = useThemeStore((state) => state.theme);
+  const toggleTheme = useThemeStore((state) => state.toggleTheme);
+
+  console.log("Tema corrente:", theme);
 
   return (
     <>
@@ -109,19 +113,19 @@ const Navbar = () => {
           <div className="hidden lg:flex gap-4">
             <Link
               to="/"
-              className="text-base font-bold text-darkText dark:text-lightText no-underline"
+              className="text-base font-bold text-darkText dark:text-lightText hover:text-lightPurple no-underline"
             >
               HOME
             </Link>
             <Link
               to="/about"
-              className="text-base font-bold text-darkText dark:text-lightText no-underline"
+              className="text-base font-bold text-darkText dark:text-lightText hover:text-lightPurple no-underline"
             >
               ABOUT
             </Link>
             <Link
               to="/contact"
-              className="text-base font-bold text-darkText dark:text-lightText no-underline"
+              className="text-base font-bold text-darkText dark:text-lightText hover:text-lightPurple no-underline"
             >
               CONTACT
             </Link>
@@ -133,13 +137,13 @@ const Navbar = () => {
             fontSize="1.5rem"
           />
 
-          {/* Theme toggle (fake for now) */}
+          {/* Theme toggle */}
           <label className="swap swap-rotate dark:text-lightText">
-            {/* this hidden checkbox controls the state */}
             <input
               type="checkbox"
               className="theme-controller"
-              value="synthwave"
+              checked={theme === "dark"}
+              onChange={toggleTheme}
             />
 
             {/* sun icon */}

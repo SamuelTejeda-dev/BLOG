@@ -13,5 +13,6 @@ const getEnv = (key: string, defaultValue?: string): string => {
 export const NODE_ENV = getEnv("NODE_ENV", "development");
 export const PORT = getEnv("PORT", "4004");
 export const APP_ORIGIN = getEnv("APP_ORIGIN");
+export const APP_ORIGIN_DOCKER = getEnv("APP_ORIGIN_DOCKER", APP_ORIGIN);
 export const SESSION_SECRET = getEnv("SESSION_SECRET");
 export const NEON_URI = getEnv("NEON_URI");

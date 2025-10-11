@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import WithoutLayout from "./components/Layout/WithoutLayout";
 import Login from "./pages/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { useThemeStore } from "./stores/useThemeStore";
 
 type editorData = {
   time: number;
@@ -33,16 +34,16 @@ const INITIAL_DATA = {
 
 function App() {
   const [data, setData] = useState<editorData>(INITIAL_DATA);
-  const [theme, setTheme] = useState<string>("light");
+  //const [theme, setTheme] = useState<string>("light");
+
+  const setTheme = useThemeStore((state) => state.setTheme);
 
   useEffect(() => {
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-    setTheme(systemPrefersDark ? "dark" : "light");
+    const systemPrefersDark: MediaQueryList = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    setTheme(systemPrefersDark.matches ? "dark" : "light");
   }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   return (
     <Router>
@@ -61,7 +62,7 @@ function App() {
               element={
                 <EditorJS
                   data={data}
-                  onChange={(newData: any) => {
+                  onChange={(newData: editorData) => {
                     console.log("Editor changed:", newData);
                     setData(newData); // ✅ OK: chiaro che stai ricevendo solo `data`, non un evento
                   }}

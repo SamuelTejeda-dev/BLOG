@@ -2,7 +2,7 @@ import api from "../lib/axios";
 
 type post = {
   slug: string;
-  content: Object;
+  content: object;
   author: string;
 };
 
@@ -14,7 +14,7 @@ export const getPostBySlug = async (slug: string) => {
 export const createPost = async (data: post) =>
   await api.post(`manage/resources`, data);
 
-export const login = async (data: any) => {
+export const login = async (data: string) => {
   await api.post(`/manage/contacts`, data);
 };
 
