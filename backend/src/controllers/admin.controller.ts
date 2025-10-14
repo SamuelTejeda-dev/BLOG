@@ -1,4 +1,3 @@
-import { log } from "node:console";
 import { NODE_ENV, SESSION_SECRET } from "../constants/env";
 import { CREATED, OK, UNAUTHORIZED } from "../constants/http";
 import { postSchema } from "../models/post.schema";

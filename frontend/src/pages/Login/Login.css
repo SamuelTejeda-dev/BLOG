@@ -5,6 +5,7 @@
   align-items: center; /* centra verticalmente */
   justify-content: center; /* centra orizzontalmente */
   min-height: 100vh;
+  color: black;
 }
 
 .material-form {

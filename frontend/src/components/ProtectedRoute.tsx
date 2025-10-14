@@ -3,7 +3,6 @@ import useProtectedRoute from "../hooks/useProtectedRoute";
 
 const ProtectedRoute = () => {
   const { data, isLoading, isError } = useProtectedRoute();
-  console.log(data);
 
   if (isLoading) return <div>Loading...</div>;
 

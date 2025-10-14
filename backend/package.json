@@ -6,7 +6,8 @@
     "test": "vitest",
     "dev": "ts-node-dev --files --env-file .env src/index.ts",
     "build": "tsc && cpy package.json dist",
-    "start": "node index.js"
+    "start": "node index.js",
+    "db:push": "npx drizzle-kit push"
   },
   "author": "",
   "license": "ISC",

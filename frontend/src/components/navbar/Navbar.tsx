@@ -134,7 +134,7 @@ const Navbar = () => {
           {/* Mobile search icon */}
           <IoSearchSharp
             className="sm:hidden text-darkText dark:text-lightText"
-            fontSize="1.5rem"
+            fontSize="2rem"
           />
 
           {/* Theme toggle */}

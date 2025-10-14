@@ -63,7 +63,10 @@ export const EditorJsOutputSchema = z.object({
 
 //schema post
 export const postSchema = z.object({
+  title: z.string().min(1).max(255).nonempty(),
   slug: z.string().min(1).max(255),
   content: EditorJsOutputSchema,
-  author: z.string().min(1).max(255),
+  author: z.string().min(1).max(255).nonempty(),
+  description: z.string().min(10).max(255).nonempty(),
+  themes: z.array(z.string()).nonempty(),
 });

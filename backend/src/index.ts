@@ -13,10 +13,7 @@ import postsRoutes from "./routes/posts.route";
 import helmet from "helmet";
 import session from "express-session";
 
-const allowedOrigins: string[] = [
-  "https://blog.localhost",
-  "http://localhost:5173",
-];
+const allowedOrigins: string[] = [APP_ORIGIN, APP_ORIGIN_DOCKER];
 
 const app = express();
 app.use(express.json());

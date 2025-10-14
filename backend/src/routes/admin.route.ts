@@ -7,7 +7,7 @@ import {
 } from "../controllers/admin.controller";
 import { isAdmin } from "../middleware/isAdmin";
 import {
-  loginRquestLimiter,
+  loginRequestLimiter,
   postCreationLimiter,
 } from "../middleware/rateLimiter";
 
@@ -15,7 +15,7 @@ import {
 
 const adminRoutes = Router();
 
-adminRoutes.post("/contacts", loginRquestLimiter, loginHandler);
+adminRoutes.post("/contacts", loginRequestLimiter, loginHandler);
 adminRoutes.post("/clear", isAdmin, logoutHandler);
 adminRoutes.post("/resources", postCreationLimiter, isAdmin, postHandler);
 adminRoutes.get("/check", checkSession);

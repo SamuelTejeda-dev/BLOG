@@ -1,7 +1,8 @@
 import { Router } from "express";
 import {
+  getPostByIdHandler,
   getPostBySlugHandler,
-  getXPostsBySlugHandler,
+  getXPostsHandler,
 } from "../controllers/posts.controller";
 import { blogViewLimiter } from "../middleware/rateLimiter";
 
@@ -9,7 +10,8 @@ import { blogViewLimiter } from "../middleware/rateLimiter";
 
 const postsRoutes = Router();
 
-postsRoutes.get("/", blogViewLimiter, getXPostsBySlugHandler);
-postsRoutes.get("/:slug", blogViewLimiter, getPostBySlugHandler);
+postsRoutes.get("/latest", blogViewLimiter, getXPostsHandler);
+postsRoutes.get("/id/:id", blogViewLimiter, getPostByIdHandler);
+postsRoutes.get("/slug/:slug", blogViewLimiter, getPostBySlugHandler);
 
 export default postsRoutes;

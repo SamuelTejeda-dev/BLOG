@@ -1,20 +1,25 @@
 import api from "../lib/axios";
+import type { post } from "../types/postType";
+import type { loginData } from "../types/loginType";
 
-type post = {
-  slug: string;
-  content: object;
-  author: string;
+export const getPosts = async () => {
+  return await api.get("/posts/latest");
 };
 
-//export const getPosts = () => api.get("/posts");
 export const getPostBySlug = async (slug: string) => {
-  return await api.get(`/posts/${slug}`);
+  return await api.get(`/posts/slug/${slug}`);
 };
 
-export const createPost = async (data: post) =>
-  await api.post(`manage/resources`, data);
+export const getPostById = async (id: number) => {
+  return await api.get(`/posts/id/${id}`);
+};
 
-export const login = async (data: string) => {
+export const createPost = async (data: post) => {
+  console.log("📦 Payload inviato:", data);
+  return await api.post(`manage/resources`, data);
+};
+
+export const login = async (data: loginData) => {
   await api.post(`/manage/contacts`, data);
 };
 

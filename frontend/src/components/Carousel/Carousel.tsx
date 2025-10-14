@@ -80,19 +80,22 @@ const Carousel: React.FC = () => {
   return (
     <div className="w-full px-4">
       {/* Navigation buttons */}
-      <div className="flex justify-end gap-10 mb-4">
-        <button
-          onClick={() => scroll("left")}
-          className="btn btn-outline hover:border-darkPurple hover:bg-transparent  text-darkText hover:text-darkPurple font-normal px-4 py-2 rounded-lg border-2"
-        >
-          <FaArrowLeft size={16} />
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          className="btn btn-outline hover:border-darkPurple hover:bg-transparent  text-darkText hover:text-darkPurple font-normal px-4 py-2 rounded-lg border-2"
-        >
-          <FaArrowRight size={16} />
-        </button>
+      <div className="flex justify-between gap-10 mb-4">
+        <p className="text-darkText text-xl italic">Most popular articles:</p>
+        <div className="flex gap-4">
+          <button
+            onClick={() => scroll("left")}
+            className="btn btn-outline hover:border-darkPurple hover:bg-transparent  text-darkText hover:text-darkPurple font-normal px-4 py-2 rounded-lg border-2"
+          >
+            <FaArrowLeft size={16} />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            className="btn btn-outline hover:border-darkPurple hover:bg-transparent  text-darkText hover:text-darkPurple font-normal px-4 py-2 rounded-lg border-2"
+          >
+            <FaArrowRight size={16} />
+          </button>
+        </div>
       </div>
 
       {/* Carousel container */}
@@ -107,12 +110,12 @@ const Carousel: React.FC = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-[calc(25%-18px)] bg-blue-100 p-6 rounded-xl"
+            className="flex-shrink-0 w-[calc(25%-18px)] bg-lightPurple p-6 rounded-xl"
           >
-            <h2 className="text-xl font-bold text-blue-900 mb-2">
+            <h2 className="text-xl font-bold text-darkText mb-2">
               {slide.title}
             </h2>
-            <p className="text-blue-800 text-sm">{slide.description}</p>
+            <p className="text-darkText text-sm">{slide.description}</p>
           </div>
         ))}
       </div>

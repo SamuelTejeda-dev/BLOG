@@ -1,16 +1,36 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPostBySlug } from "../services/posts";
+import { getPostById, getPostBySlug, getPosts } from "../services/posts";
 
 export const POST = "POST";
 
-const useGetPostBySlug = (postId: string) => {
+export const useGetPosts = () => {
   return useQuery({
-    queryKey: [POST, postId],
+    queryKey: [POST],
     queryFn: async () => {
-      const response = await getPostBySlug(postId);
+      const response = await getPosts();
       return response.data;
     },
   });
 };
 
-export default useGetPostBySlug;
+export const useGetPostBySlug = (slug: string) => {
+  return useQuery({
+    queryKey: [POST, slug],
+    queryFn: async () => {
+      const response = await getPostBySlug(slug);
+      return response.data;
+    },
+    enabled: !!slug,
+  });
+};
+
+export const useGetPostById = (id: number) => {
+  return useQuery({
+    queryKey: [POST, id],
+    queryFn: async () => {
+      const response = await getPostById(id);
+      return response.data;
+    },
+    enabled: !!id,
+  });
+};

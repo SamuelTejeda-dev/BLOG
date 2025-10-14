@@ -1,9 +1,14 @@
 import { NOT_FOUND, OK } from "../constants/http";
 import appAssert from "../utils/AppAssert";
 import catchErrors from "../utils/catchErrors";
-import { getPostBySlug, getXPosts } from "../utils/posts";
+import { getPostBySlug, getXPosts, getPostById } from "../utils/posts";
 
-//logica delle routes admin
+export const getXPostsHandler = catchErrors(async (req, res) => {
+  const posts = await getXPosts(9);
+  appAssert(posts.length !== 0, NOT_FOUND, "Non ci sono altri post");
+
+  res.status(OK).json(posts);
+});
 
 export const getPostBySlugHandler = catchErrors(async (req, res) => {
   const slug = req.params.slug;
@@ -14,9 +19,11 @@ export const getPostBySlugHandler = catchErrors(async (req, res) => {
   res.status(OK).json(post);
 });
 
-export const getXPostsBySlugHandler = catchErrors(async (req, res) => {
-  const post = await getXPosts(10);
-  appAssert(post.length !== 0, NOT_FOUND, "Non ci sono altri post");
+export const getPostByIdHandler = catchErrors(async (req, res) => {
+  const id = Number(req.params.id);
+
+  const post = await getPostById(id);
+  appAssert(post, NOT_FOUND, "Post non esistente");
 
   res.status(OK).json(post);
 });

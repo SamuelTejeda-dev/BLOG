@@ -1,7 +1,7 @@
 import rateLimit from "express-rate-limit";
 import { TOO_MANY_REQUESTS } from "../constants/http";
 
-export const loginRquestLimiter = rateLimit({
+export const loginRequestLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minuti
   max: 100, // max 100 richieste per IP
   standardHeaders: true, // invia gli header RateLimit
@@ -17,7 +17,7 @@ export const loginRquestLimiter = rateLimit({
 
 export const blogViewLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minuti
-  max: 100, // max 200 richieste per IP
+  max: 100, // max 100 richieste per IP
   standardHeaders: true,
   legacyHeaders: false,
   handler: (_, res) => {
@@ -30,7 +30,7 @@ export const blogViewLimiter = rateLimit({
 
 export const postCreationLimiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 minuti
-  max: 5, // max 5 articoli ogni 10 minuti per IP
+  max: 50, // max 5 articoli ogni 10 minuti per IP
   standardHeaders: true,
   legacyHeaders: false,
   handler: (_, res) => {
