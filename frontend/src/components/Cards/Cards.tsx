@@ -1,8 +1,4 @@
-import { useGetPosts } from "../../hooks/usePost";
-
 const Cards = () => {
-  const { data: post } = useGetPosts();
-  console.log(post[0]);
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center mt-15 mx-10">
       {[1, 2, 4, 5, 6, 7, 8, 9].map((index) => (
