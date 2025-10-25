@@ -7,6 +7,8 @@ import WithoutLayout from "./components/Layout/WithoutLayout";
 import Login from "./pages/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useThemeStore } from "./stores/useThemeStore";
+import BlogPage from "./pages/BlogPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 type editorData = {
   time: number;
@@ -34,7 +36,6 @@ const INITIAL_DATA = {
 
 function App() {
   const [data, setData] = useState<editorData>(INITIAL_DATA);
-  //const [theme, setTheme] = useState<string>("light");
 
   const setTheme = useThemeStore((state) => state.setTheme);
 
@@ -51,6 +52,7 @@ function App() {
         <Route element={<WithLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Home />} />
+          <Route path="/article/:slug" element={<BlogPage />} />
         </Route>
 
         <Route path="manage/contacts" element={<Login />} />
@@ -72,6 +74,7 @@ function App() {
             />
           </Route>
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

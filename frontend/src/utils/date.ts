@@ -1,15 +1,14 @@
 export function formatDate(isoDate: string): string {
-  const date = new Date(isoDate);
+  const date = new Date(isoDate); // gestisce già ISO string
+
+  if (isNaN(date.getTime())) return "";
 
   const options: Intl.DateTimeFormatOptions = {
-    weekday: "long", // Monday
-    year: "numeric", // 2020
-    month: "short", // Jan
-    day: "numeric", // 20
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
   };
 
-  // 'en-US' per ottenere "Monday, Jan 20, 2020"
-  const formatted = date.toLocaleDateString("en-US", options);
-
-  return formatted.replace(",", "");
+  return date.toLocaleDateString("en-US", options).replace(",", "");
 }

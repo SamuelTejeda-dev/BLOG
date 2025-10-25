@@ -1,5 +1,5 @@
 import api from "../lib/axios";
-import type { post } from "../types/postType";
+import type { createPostType } from "../types/postType";
 import type { loginData } from "../types/loginType";
 
 export const getPosts = async () => {
@@ -14,8 +14,7 @@ export const getPostById = async (id: number) => {
   return await api.get(`/posts/id/${id}`);
 };
 
-export const createPost = async (data: post) => {
-  console.log("📦 Payload inviato:", data);
+export const createPost = async (data: createPostType) => {
   return await api.post(`manage/resources`, data);
 };
 
