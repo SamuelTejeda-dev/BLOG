@@ -15,12 +15,12 @@ afterAll(async () => {
     .execute();
 });
 
-describe("GET / hello", () => {
-  it("should return hello ", async () => {
-    const response = await request(app).get("/");
+describe("GET / health", () => {
+  it("should return health ", async () => {
+    const response = await request(app).get("/health");
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ message: "hello" });
+    expect(response.body).toEqual({ message: "health" });
   });
 });
 
@@ -76,15 +76,17 @@ describe("TEST POST API integration", () => {
       .expect(200);
     const response = await agent.post("/manage/resources").send(mockedPost);
 
-    // if (response.statusCode !== 201) {
-    //   console.error("API Response Body (400 Error):", response.body);
-    // }
+    if (response.statusCode !== 201) {
+      console.error("API Response Body (400 Error):", response.body);
+    }
 
     expect(response.statusCode).toBe(201);
     expect(response.body).toMatchObject({
       slug: mockedPost.slug,
       author: mockedPost.author,
       content: mockedPost.content,
+      title: mockedPost.title,
+      themes: mockedPost.themes,
     });
   });
 

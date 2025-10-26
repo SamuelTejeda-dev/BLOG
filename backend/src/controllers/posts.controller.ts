@@ -3,7 +3,7 @@ import appAssert from "../utils/AppAssert";
 import catchErrors from "../utils/catchErrors";
 import { getPostBySlug, getXPosts, getPostById } from "../utils/posts";
 
-export const getXPostsHandler = catchErrors(async (req, res) => {
+export const getXPostsHandler = catchErrors(async (_, res) => {
   const posts = await getXPosts(9);
   appAssert(posts.length !== 0, NOT_FOUND, "Non ci sono altri post");
 

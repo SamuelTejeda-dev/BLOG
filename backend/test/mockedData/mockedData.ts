@@ -1,6 +1,9 @@
 export const mockedPost = {
   slug: "test",
   author: "test",
+  description: "test description",
+  themes: ["Security", "React"],
+  title: "test",
   content: {
     time: 1747939746647,
     blocks: [

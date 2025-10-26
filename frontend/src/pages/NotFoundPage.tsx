@@ -7,7 +7,7 @@ const NotFoundPage = () => {
       <p className="text-lg mb-6">
         Oops! La pagina che stai cercando non esiste.
       </p>
-      <Link to="/" className="text-blue-500 underline">
+      <Link to="/" className="text-lightPurple underline">
         Torna alla home
       </Link>
     </main>

@@ -12,8 +12,6 @@ const Navbar = () => {
   const theme = useThemeStore((state) => state.theme);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
 
-  console.log("Tema corrente:", theme);
-
   return (
     <>
       {/* Overlay */}

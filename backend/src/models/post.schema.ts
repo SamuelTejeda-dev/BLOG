@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-//validazione delle richieste
-
 //Schema paragraph da editor js
 const ParagraphBlockDataSchema = z.object({
   text: z
@@ -24,15 +22,42 @@ const HeaderBlockDataSchema = z.object({
   ]),
 });
 
-//Schema immagine da editor js
-const ImageBlockDataSchema = z.object({
-  file: z.object({
-    url: z.string().url({ message: "L'URL dell'immagine non è valido." }),
-  }),
-  caption: z.string().optional(),
-  withBorder: z.boolean().optional(),
-  withBackground: z.boolean().optional(),
-  stretched: z.boolean().optional(),
+// Schema list da Editor.js
+const ListItemSchema: z.ZodType<any> = z.lazy(() =>
+  z.object({
+    content: z
+      .string()
+      .min(1, { message: "Ogni elemento della lista deve avere contenuto." }),
+    meta: z
+      .object({
+        checked: z.boolean().optional(),
+        start: z.number().optional(),
+        counterType: z.string().optional(),
+      })
+      .optional(),
+    // 👇 supporta liste annidate
+    items: z.array(ListItemSchema).optional(),
+  })
+);
+
+//Definizione dello schema principale del blocco list
+const ListBlockDataSchema = z.object({
+  style: z.enum(["ordered", "unordered", "checklist"]),
+  meta: z
+    .object({
+      start: z.number().optional(),
+      counterType: z.string().optional(),
+    })
+    .optional(),
+  items: z
+    .array(ListItemSchema)
+    .min(1, { message: "La lista deve contenere almeno un elemento." }),
+});
+
+// Schema code da editor js
+const CodeBlockDataSchema = z.object({
+  code: z.string().min(1, { message: "Il codice non può essere vuoto." }),
+  language: z.string().optional(), // puoi aggiungere se vuoi evidenziazione
 });
 
 //schema dei tipi di dati da editor js
@@ -49,8 +74,13 @@ const EditorJsBlockDetailedSchema = z.discriminatedUnion("type", [
   }),
   z.object({
     id: z.string().optional(),
-    type: z.literal("image"),
-    data: ImageBlockDataSchema,
+    type: z.literal("code"),
+    data: CodeBlockDataSchema,
+  }),
+  z.object({
+    id: z.string().optional(),
+    type: z.literal("list"),
+    data: ListBlockDataSchema,
   }),
 ]);
 
